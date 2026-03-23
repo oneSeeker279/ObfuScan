@@ -4,12 +4,6 @@ project(ObfuScan LANGUAGES C CXX)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-if (MSVC)
-    target_compile_options(ObfuScan PRIVATE /W3 /EHsc /utf-8)
-    target_compile_definitions(ObfuScan PRIVATE NOMINMAX)  # 加这行
-else()
-    target_compile_options(ObfuScan PRIVATE -Wall -Wextra -O2)
-endif()
 
 
 include(FetchContent)
@@ -45,6 +39,7 @@ target_link_libraries(ObfuScan PRIVATE capstone)
 
 if (MSVC)
     target_compile_options(ObfuScan PRIVATE /W3 /EHsc /utf-8)
+    target_compile_definitions(ObfuScan PRIVATE NOMINMAX)  # 加这行
 else()
     target_compile_options(ObfuScan PRIVATE -Wall -Wextra -O2)
 endif()
