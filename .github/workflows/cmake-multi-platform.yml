@@ -37,11 +37,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install CMake 4.x
-      uses: jwlawson/actions-setup-cmake@v2
-      with:
-        cmake-version: '4.1.0'
-
     - name: Cache FetchContent
       uses: actions/cache@v4
       with:
