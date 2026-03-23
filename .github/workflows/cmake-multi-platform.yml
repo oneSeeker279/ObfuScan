@@ -59,6 +59,16 @@ jobs:
 
     - name: Build
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+    
+    # 在 Build 步骤后面加这个
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ObfuScan-${{ matrix.os }}-${{ matrix.c_compiler }}
+        path: |
+          ${{ steps.strings.outputs.build-output-dir }}/Release/ObfuScan.exe
+          ${{ steps.strings.outputs.build-output-dir }}/ObfuScan
+        if-no-files-found: ignore
 
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
